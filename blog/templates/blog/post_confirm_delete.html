@@ -1,0 +1,25 @@
+{% extends "blog/base.html" %}
+{% block title %}
+    <title>Register</title>
+{% endblock title %}
+{% block css %}
+    {% load static %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'users/test.css' %}">
+{% endblock css %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="content-section">
+        <form method="post">
+            {% csrf_token %}
+            <legend>Delete Post</legend>
+            <h2>Confirm delete "{{ object.title }}"</h2>
+            {{ form|crispy }}
+            <div>
+                <button class="btn btn-outline-danger" type="submit">Delete</button>
+                <a class="btn btn-outline-secondary" href="{% url 'post-detail' object.id %}">Cancel</a>
+            </div>
+        </form>
+    </div>
+    
+{% endblock content %}

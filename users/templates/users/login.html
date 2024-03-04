@@ -1,0 +1,34 @@
+{% extends "blog/base.html" %}
+{% block title %}
+    <title>Login</title>
+{% endblock title %}
+{% block css %}
+    {% load static %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'users/test.css' %}">
+{% endblock css %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="content-section">
+        <form method="post">
+            {% csrf_token %}
+            <legend>Log in</legend>
+            {{ form|crispy }}
+            <div>
+                <button class="btn btn-outline-info" type="submit">Sign in</button>
+                <div>
+                    <small>
+                        <a href="{% url 'password_reset' %}">Forgot Password</a>
+                    </small>
+                </div>
+
+            </div>
+        </form>
+        <div>
+            <small>
+                Need account? <a href="{% url 'register' %}">Sign up</a>
+            </small>
+        </div>
+    </div>
+    
+{% endblock content %}
